@@ -1,0 +1,15 @@
+[user]
+  email = josemmazzei@gmail.com
+  name = jmm
+[alias]
+  cm = commit
+  br = branch
+  ca = commit -a
+  changelog = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --date=relative --abbrev-commit --graph
+  df = diff
+  lg = log -p
+  logd = log --graph --decorate --oneline
+  logo = log --graph --decorate --oneline --abbrev-commit --all
+  ls = ls-files
+  st = status --short
+  wip = !git commit -am wip
