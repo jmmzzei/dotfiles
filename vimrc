@@ -74,7 +74,6 @@ set autoread
 set backspace=indent,eol,start
 set backupdir=/tmp//,.
 set clipboard=unnamedplus
-set colorcolumn=80
 set completeopt=menuone,longest
 set cryptmethod=blowfish2
 set cursorline
