@@ -262,7 +262,6 @@ nnoremap <c-p> :Files<cr>
 " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
 set spellfile=$HOME/.vim-spell-en.utf-8.add
 
-
 " Press * to search for the term under the cursor or a visual selection and
 " then press a key below to replace all instances of it in the current file.
 nnoremap <Leader>r :%s///g<Left><Left>
@@ -387,7 +386,7 @@ hi ExtraWhitespace ctermbg=235
 
 " change diff colors
 hi DiffAdd ctermbg=235 ctermfg=142 cterm=NONE
-hi DiffDelete ctermbg=167 ctermfg=142 cterm=NONE
+hi DiffDelete ctermfg=167 ctermbg=235 cterm=NONE
 hi DiffText cterm=NONE ctermbg=236
 hi DiffChange cterm=NONE ctermbg=236 ctermfg=108
 
