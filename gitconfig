@@ -4,6 +4,7 @@
 [alias]
   cm = commit
   br = branch
+  co = checkout
   ca = commit -a
   changelog = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --date=relative --abbrev-commit --graph
   df = diff
@@ -13,3 +14,5 @@
   ls = ls-files
   st = status --short
   wip = !git commit -am wip
+[commit]
+  template = ~/.gitmessage
