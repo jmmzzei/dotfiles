@@ -16,3 +16,5 @@
   wip = !git commit -am wip
 [commit]
   template = ~/.gitmessage
+[rerere]
+  enabled = true
