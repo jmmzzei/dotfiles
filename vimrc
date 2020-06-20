@@ -20,6 +20,7 @@ vnoremap <A-e release branch (recommend)> :m '<-2<CR>gv=gv
 
 " change active pane
 map <s-w> <C-W>w
+map <s-q> <C-W><C-W>j
 
 " escape insert mode quickly
 imap jj <Esc>
@@ -213,8 +214,10 @@ endfunction
 inoremap <Tab> <C-r>=InsertTabWrapper()<CR>
 inoremap <S-Tab> <C-n>
 
+" perform a ripgrep search
+nnoremap <leader>ñ :Rg<CR>
+
 " fzf key bindings
-nnoremap <space>ñ :Rg<CR>
 nnoremap <space>gk :Commits<CR>
 
 " fugitive git bindings
@@ -363,6 +366,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 call plug#end()
 
+" format files with Prettier on save
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
 " redefine emmet trigger
 let g:user_emmet_leader_key='€'
 
@@ -473,9 +479,6 @@ au FocusGained,BufEnter * :checktime
 " Unset paste on InsertLeave.
 autocmd InsertLeave * silent! set nopaste
 
-" Make sure all types of requirements.txt files get syntax highlighting.
-autocmd BufNewFile,BufRead requirements*.txt set syntax=python
-
 " Ensure tabs don't get converted to spaces in Makefiles.
 autocmd FileType make setlocal noexpandtab
 
@@ -540,6 +543,21 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+let g:coc_snippet_prev = '<s-tab>'
 
 " Mappings using CoCList:
 " Show all diagnostics.
