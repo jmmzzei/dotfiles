@@ -1,5 +1,6 @@
 " Leader
 let mapleader = " "
+nnoremap <Space> <NOP>
 
 " netrw
 nnoremap <s-n> :Lexplore<cr>
@@ -294,6 +295,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
 " Toggle comments in various ways.
 Plug 'tpope/vim-commentary'
+
 " Automatically set 'shiftwidth' + 'expandtab' (indention) based on file type.
 Plug 'tpope/vim-sleuth'
 " A number of useful motions for the quickfix list, pasting and more.
@@ -308,7 +310,7 @@ Plug 'dhruvasagar/vim-zoom'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 
 " Launch Ranger from Vim.
-Plug 'francoiscabrol/ranger.vim'
+" Plug 'francoiscabrol/ranger.vim'
 
 " Run a diff on 2 directories.
 Plug 'will133/vim-dirdiff'
@@ -352,12 +354,13 @@ Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'stephpy/vim-yaml'
-Plug 'tmux-plugins/vim-tmux'
+" Plug 'tmux-plugins/vim-tmux'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-liquid'
 Plug 'vim-python/python-syntax'
 Plug 'wgwoods/vim-systemd-syntax'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'honza/vim-snippets'
 call plug#end()
 
 " redefine emmet trigger
