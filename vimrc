@@ -99,7 +99,7 @@ set numberwidth=5
 set regexpengine=1
 set scrolloff=2
 set showmatch
-set showmode
+set noshowmode
 set smartcase
 set softtabstop=2
 set spelllang=en_us
@@ -215,7 +215,7 @@ inoremap <Tab> <C-r>=InsertTabWrapper()<CR>
 inoremap <S-Tab> <C-n>
 
 " perform a ripgrep search
-nnoremap <leader>ñ :Rg<CR>
+nnoremap <leader>e :Rg<CR>
 
 " fzf key bindings
 nnoremap <space>gk :Commits<CR>
@@ -226,6 +226,7 @@ nnoremap <space>gs :vertical Gstatus<CR>
 nnoremap <space>gc :Gcommit -v -q<CR>i
 nnoremap <space>gn :Gcommit -v --amend --no-edit<CR><CR>
 nnoremap <space>gd :Gdiff<CR>
+nnoremap <space>gh :0Glog<CR>
 nnoremap <space>ge :Gedit<CR>
 nnoremap <space>gr :Gread<CR>
 nnoremap <space>gw :Gwrite<CR><CR>
@@ -288,12 +289,14 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mattn/emmet-vim'
 Plug 'airblade/vim-gitgutter'
+Plug 'neoclide/jsonc.vim'
 " Automatically clear search highlights after you move your cursor.
 Plug 'haya14busa/is.vim'
 " Better manage Vim sessions.
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-dispatch'
 " Helpers for moving and manipulating files / directories.
 Plug 'tpope/vim-eunuch'
 " Toggle comments in various ways.
@@ -378,6 +381,17 @@ let g:gitgutter_override_sign_column_highlight = 1
 " change some gitgutter signs
 let g:gitgutter_sign_removed_first_line = '^'
 let g:gitgutter_sign_modified_removed = '<'
+
+" tsconfig.json is actually jsonc, help TypeScript set the correct filetype
+autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
+
+" vim-unimpaired alternatives for my non-US keyboard
+nmap ¿ [
+nmap + ]
+omap ¿ [
+omap + ]
+xmap ¿ [
+xmap + ]
 
 " Jump between hgunks
 " git next
@@ -562,8 +576,6 @@ let g:coc_snippet_prev = '<s-tab>'
 " Mappings using CoCList:
 " Show all diagnostics.
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 " Show commands.
 nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document.
