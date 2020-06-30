@@ -9,6 +9,7 @@
   changelog = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --date=relative --abbrev-commit --graph
   df = diff
   lg = log -p
+  ui = update-index --again
   logd = log --graph --decorate --oneline
   logo = log --graph --decorate --oneline --abbrev-commit --all
   ls = ls-files
