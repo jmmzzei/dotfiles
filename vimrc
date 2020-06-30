@@ -19,8 +19,8 @@ vnoremap <A-k> :m '>+1<CR>gv=gv
 vnoremap <A-e release branch (recommend)> :m '<-2<CR>gv=gv
 
 " change active pane
+map <s-q> <C-W>h
 map <s-w> <C-W>w
-map <s-q> <C-W><C-W>j
 
 " escape insert mode quickly
 imap jj <Esc>
@@ -302,6 +302,11 @@ Plug 'tpope/vim-eunuch'
 " Toggle comments in various ways.
 Plug 'tpope/vim-commentary'
 
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'branch': 'release/0.x'
+  \ }
+
 " Automatically set 'shiftwidth' + 'expandtab' (indention) based on file type.
 Plug 'tpope/vim-sleuth'
 " A number of useful motions for the quickfix list, pasting and more.
@@ -367,10 +372,20 @@ Plug 'vim-python/python-syntax'
 Plug 'wgwoods/vim-systemd-syntax'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
+Plug 'yuezk/vim-js'
+Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
 
-" format files with Prettier on save
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
+let g:prettier#config#tab_width = '2'
+nmap <Leader>f <Plug>(Prettier)
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
+" force vim-prettier to be async
+let g:prettier#exec_cmd_async = 1
+" autoformat even if a .prettierrc file doesn't exist in the current directory
+let g:prettier#autoformat_config_present = 0
+let g:prettier#config#trailing_comma = 'all' 
+let g:prettier#config#semi = 'false'
 
 " redefine emmet trigger
 let g:user_emmet_leader_key='€'
@@ -505,10 +520,6 @@ augroup END
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
-
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
