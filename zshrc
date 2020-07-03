@@ -39,7 +39,7 @@ ZSH_THEME="robbyrussell"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -93,11 +93,13 @@ alias dot="cd ~/.dotfiles"
 alias update="sudo apt update"
 alias upgrade="sudo apt upgrade -y"
 alias autoremove="sudo apt autoremove"
+alias install="sudo apt install"
 alias reboot="sudo reboot"
 alias poweroff="sudo poweroff"
 alias mkdir="mkdir -p"
 alias rmdir="rm -rf"
 alias cls="clear"
+alias zip="zip -r"
 
 # functions
 mkd() {
@@ -116,3 +118,4 @@ mkd() {
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export TERM=xterm-256color-italic
+export FZF_DEFAULT_OPTS='--bind=ctrl-l:up,ctrl-k:down'

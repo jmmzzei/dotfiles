@@ -57,6 +57,7 @@ nnoremap b q
 xnoremap q b
 xnoremap b q
 
+set redrawtime=10000 
 set fillchars+=vert:│
 set backspace=2   " Backspace deletes like most programs in insert mode
 " Some servers have issues with backup files
@@ -223,7 +224,7 @@ nnoremap <space>gk :Commits<CR>
 " fugitive git bindings
 nnoremap <space>ga :Git add %:p<CR><CR>
 nnoremap <space>gs :vertical Gstatus<CR>
-nnoremap <space>gc :Gcommit -v -q<CR>i
+nnoremap <space>gc :Gcommit -v -q<CR>
 nnoremap <space>gn :Gcommit -v --amend --no-edit<CR><CR>
 nnoremap <space>gd :Gdiff<CR>
 nnoremap <space>gh :0Glog<CR>
@@ -316,6 +317,8 @@ Plug 'itchyny/lightline.vim'
 
 " Zoom in and out of a specific split pane (similar to tmux).
 Plug 'dhruvasagar/vim-zoom'
+
+Plug 'AndrewRadev/switch.vim'
 
 " Pass focus events from tmux to Vim (useful for autoread and linting tools).
 Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -433,10 +436,13 @@ hi DiffChange cterm=NONE ctermbg=236 ctermfg=108
 let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
-      \ 'right': [
+      \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] ],
+      \   'right': [
 		  \            [ 'percent' ],
 		  \            [ 'filetype' ] ] },
+      \ 'inactive': {
+      \   'right':[],
+      \  },
       \ 'component_function': {
       \   'gitbranch': 'FugitiveHead'
       \ },
