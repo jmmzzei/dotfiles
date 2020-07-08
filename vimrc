@@ -413,9 +413,9 @@ xmap + ]
 
 " Jump between hgunks
 " git next
-nmap <Leader>n <Plug>(GitGutterNextHunk)  
+nmap +c <Plug>(GitGutterNextHunk)  
 " git previous
-nmap <Leader>p <Plug>(GitGutterPrevHunk)  
+nmap >¿c <Plug>(GitGutterPrevHunk)  
 
 colorscheme gruvbox
 
@@ -438,14 +438,28 @@ let g:lightline = {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] ],
       \   'right': [
-		  \            [ 'percent' ],
-		  \            [ 'filetype' ] ] },
+      \            [ 'percent' ],
+      \            [ 'filetype' ] ] },
       \ 'inactive': {
+      \   'left':[['relativepath']],
       \   'right':[],
       \  },
       \ 'component_function': {
       \   'gitbranch': 'FugitiveHead'
       \ },
+      \ 'mode_map': {
+        \ 'n' : 'N',
+        \ 'i' : 'I',
+        \ 'R' : 'R',
+        \ 'v' : 'V',
+        \ 'V' : 'V ',
+        \ "\<C-v>": 'VB',
+        \ 'c' : 'C',
+        \ 's' : 'S',
+        \ 'S' : 'S ',
+        \ "\<C-s>": 'SB',
+        \ 't': 'T',
+        \ },
       \ }
 
 " toggle comments
@@ -454,6 +468,12 @@ vmap ; gc
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
+
+" treat visual lines as real lines when a long line wrap occurs
+noremap <silent> l gk
+noremap <silent> k gj
+noremap <silent> 0 g0
+noremap <silent> $ g$
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -575,6 +595,9 @@ inoremap <c-k> <Nop>
 
 let g:coc_snippet_next = '<c-k>'
 let g:coc_snippet_prev = '<c-j>'
+
+" Search for the word under the cursor at project level
+nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 
 " Mappings using CoCList:
 " Show all diagnostics.
