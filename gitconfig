@@ -1,6 +1,6 @@
 [user]
   email = josemmazzei@gmail.com
-  name = jmm
+	name = José
 [alias]
   cm = commit
   br = branch
@@ -19,3 +19,5 @@
   template = ~/.gitmessage
 [rerere]
   enabled = true
+[pull]
+	rebase = false

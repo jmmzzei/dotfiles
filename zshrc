@@ -89,7 +89,6 @@ source $ZSH/oh-my-zsh.sh
 #aliases
 alias c="cd ~/Documents/code/"
 alias to="touch"
-alias dot="cd ~/.dotfiles"
 alias update="sudo apt update"
 alias upgrade="sudo apt upgrade -y"
 alias autoremove="sudo apt autoremove"
@@ -102,7 +101,19 @@ alias cls="clear"
 alias zip="zip -r"
 
 # functions
-mkd() {
+function dot() {
+  local PARCIAL_PATH="/home/jmm"
+  local DOT="$PARCIAL_PATH/.dotfiles"
+  local NO_DOT="$PARCIAL_PATH/dotfiles"
+  if [ -d $DOT ]
+  then
+    cd $DOT 
+  else
+    cd $NO_DOT
+  fi
+}
+
+function mkd() {
   mkdir -p "$1" && cd "$1"
 }
 
