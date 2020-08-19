@@ -51,11 +51,16 @@ vnoremap l k
 vnoremap k j
 vnoremap j h
 
+" save on buffer leaves or vim's focus is lost
+autocmd BufLeave,FocusLost * silent! wall
+
 " toggle backward cursor and record macro key
 nnoremap q b
 nnoremap b q
 xnoremap q b
 xnoremap b q
+onoremap q b
+onoremap b q
 
 set redrawtime=10000 
 set fillchars+=vert:│
