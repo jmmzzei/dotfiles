@@ -423,6 +423,26 @@ let g:gitgutter_sign_modified_removed = '<'
 " tsconfig.json is actually jsonc, help TypeScript set the correct filetype
 autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
 
+let g:switch_custom_definitions =
+    \ [
+    \   ['block', 'none'],
+    \   ['row', 'column'],
+    \   ['left', 'right'],
+    \   ['padding', 'margin'], 
+    \   ['height', 'width'],
+    \   ['vw', 'vh'],
+    \   ['top', 'bottom'],
+    \   ['primary', 'secondary'],
+    \   ['0', '1'],
+    \   ['center', 'space-between'],
+    \   ['get', 'set'],
+    \   ['request', 'response'],
+    \   ['params', 'query'],
+    \   ['Request', 'Response'],
+    \   ['pick', 'squash', 'edit'],
+    \ ]
+
+
 " vim-unimpaired alternatives for my non-US keyboard
 nmap ¿ [
 nmap + ]
