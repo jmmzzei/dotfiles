@@ -340,17 +340,12 @@ Plug 'AndrewRadev/linediff.vim'
 " Add spelling errors to the quickfix list (vim-ingo-library is a dependency).
 Plug 'inkarkat/vim-ingo-library' | Plug 'inkarkat/vim-SpellCheck'
 
-" Highlight which character to jump to when using horizontal movement keys.
-Plug 'unblevable/quick-scope'
-
 " Modify * to also work with visual selections.
 Plug 'nelstrom/vim-visual-star-search'
 
-" Handle multi-file find and replace.
-Plug 'mhinz/vim-grepper'
-
 " Better display unwanted whitespace.
 Plug 'ntpeters/vim-better-whitespace'
+
 " Drastically improve insert mode performance in files with folds.
 Plug 'Konfekt/FastFold'
 
@@ -361,6 +356,9 @@ Plug 'Konfekt/FastFold'
 Plug 'janko/vim-test'
 
 " Languages and file types.
+
+" Plug 'tmux-plugins/vim-tmux'
+
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'chr4/nginx.vim'
 Plug 'chrisbra/csv.vim'
@@ -373,9 +371,9 @@ Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'stephpy/vim-yaml'
-" Plug 'tmux-plugins/vim-tmux'
+
+
 Plug 'tpope/vim-git'
-Plug 'tpope/vim-liquid'
 Plug 'vim-python/python-syntax'
 Plug 'wgwoods/vim-systemd-syntax'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -385,7 +383,6 @@ Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
 
 nmap <Leader>f <Plug>(Prettier)
-
 let g:prettier#config#tab_width = '2'
 let g:prettier#config#trailing_comma = 'all' 
 let g:prettier#config#semi = 'false'
