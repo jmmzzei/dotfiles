@@ -129,4 +129,5 @@ function mkd() {
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export TERM=xterm-256color-italic
+# export TERM=vt100
 export FZF_DEFAULT_OPTS='--bind=ctrl-l:up,ctrl-k:down'

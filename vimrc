@@ -467,8 +467,8 @@ hi Comment cterm=italic
 " change diff colors
 hi DiffAdd ctermbg=235 ctermfg=142 cterm=NONE
 hi DiffDelete ctermfg=167 ctermbg=235 cterm=NONE
-hi DiffText cterm=NONE ctermbg=236
-hi DiffChange cterm=NONE ctermbg=236 ctermfg=108
+hi DiffText cterm=NONE ctermbg=238
+hi DiffChange cterm=NONE ctermbg=238 ctermfg=108
 
 let g:lightline = {
       \ 'active': {
@@ -634,7 +634,7 @@ let g:coc_snippet_next = '<c-k>'
 let g:coc_snippet_prev = '<c-j>'
 
 " Search for the word under the cursor at project level
-nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>s :CocSearch <C-R>=expand("<cword>")<CR><CR>
 
 " Mappings using CoCList:
 " Show all diagnostics.
@@ -644,7 +644,7 @@ nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document.
 nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols.
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
 nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
