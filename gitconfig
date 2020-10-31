@@ -1,6 +1,6 @@
 [user]
   email = josemmazzei@gmail.com
-	name = José
+  name = José María
 [alias]
   cm = commit
   br = branch
@@ -9,6 +9,9 @@
   changelog = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --date=relative --abbrev-commit --graph
   df = diff
   lg = log -p
+  pushom = push origin master 
+  pullom = pull origin master
+  pullupm = pull upstream master
   ui = update-index --again
   logd = log --graph --decorate --oneline
   logo = log --graph --decorate --oneline --abbrev-commit --all
@@ -20,4 +23,4 @@
 [rerere]
   enabled = true
 [pull]
-	rebase = false
+  rebase = false

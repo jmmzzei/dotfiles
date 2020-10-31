@@ -475,11 +475,10 @@ hi EndOfBuffer ctermfg=235 ctermbg=235
 hi SignColumn ctermbg=235
 hi ColorColumn ctermbg=0
 hi ExtraWhitespace ctermbg=235
-
 hi Comment cterm=italic
 
 " change diff colors
-hi DiffAdd ctermbg=235 ctermfg=142 cterm=NONE
+hi DiffAdd ctermbg=236 ctermfg=142 cterm=NONE
 hi DiffDelete ctermfg=167 ctermbg=235 cterm=NONE
 hi DiffText cterm=NONE ctermbg=238
 hi DiffChange cterm=NONE ctermbg=238 ctermfg=108

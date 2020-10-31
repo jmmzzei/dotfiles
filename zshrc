@@ -88,6 +88,7 @@ source $ZSH/oh-my-zsh.sh
 
 #aliases
 alias c="cd ~/Documents/code/"
+alias facu="cd ~/Documents/facu/"
 alias to="touch"
 alias update="sudo apt update"
 alias upgrade="sudo apt upgrade -y"
@@ -128,6 +129,8 @@ function mkd() {
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+export FZF_DEFAULT_COMMAND='rg --files'
+
 export TERM=xterm-256color-italic
 # export TERM=vt100
 export FZF_DEFAULT_OPTS='--bind=ctrl-l:up,ctrl-k:down'
