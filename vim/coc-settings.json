@@ -1,4 +1,16 @@
 {
+  "explorer.width": 30,
+  "explorer.icon.enableNerdfont": false,
+  "explorer.previewAction.onHover": false,
+  "explorer.file.showHiddenFiles ": true,
+  "explorer.icon.enableVimDevicons": false,
+  "explorer.keyMappings": {
+    "<cr>": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
+    "l": "nodePrev",
+    "v": "open:vsplit",
+    "K": "toggleSelection",
+    "J": ["toggleSelection", "nodePrev"]
+  },
   "eslint.enable": true,
   "eslint.filetypes": [
     "javascript",

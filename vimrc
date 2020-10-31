@@ -3,12 +3,15 @@ let mapleader = " "
 nnoremap <Space> <NOP>
 
 " netrw
-nnoremap _ :Lexplore<CR>
+" nnoremap _ :Lexplore<CR>
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 22
+
+" coc-explorer
+nnoremap <silent> _ :CocCommand explorer<CR>
 
 " move lines
 nnoremap <A-k> :m .+1<CR>==
@@ -27,13 +30,18 @@ imap jj <Esc>
 imap kk <Esc>
 
 " copy from current position to the end of the line
-:map Y y$
+map Y y$
+
+
+" always paste the final yanked text
+nnoremap <leader>p "0p
+vnoremap <leader>p "0p
 
 " insert a new line in normal mode
 nnoremap  <CR>  i<CR><esc>
 
-" insert a space in normal mode
-" nnoremap <space><space> i<space><esc>
+" clear registers
+command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
 
 " change vim navigations keys for my keyboard
 nnoremap ñ l
@@ -430,7 +438,13 @@ let g:switch_custom_definitions =
     \   ['vw', 'vh'],
     \   ['top', 'bottom'],
     \   ['primary', 'secondary'],
+    \   ['start', 'end'],
+    \   ['min', 'max'],
+    \   ['desktop', 'mobile', 'tablet'],
+    \   ['absolute', 'relative', 'fixed'],
+    \   ['blue', 'red', 'green'],
     \   ['0', '1'],
+    \   ['ASC', 'DESC'],
     \   ['center', 'space-between'],
     \   ['get', 'set'],
     \   ['request', 'response'],
@@ -635,6 +649,11 @@ let g:coc_snippet_prev = '<c-j>'
 
 " Search for the word under the cursor at project level
 nnoremap <leader>s :CocSearch <C-R>=expand("<cword>")<CR><CR>
+
+" add a new line when <CR> is pressed and the cursor is between two coc-pairs
+" allowed characters
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                        \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Mappings using CoCList:
 " Show all diagnostics.
