@@ -418,7 +418,6 @@ autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.gra
 " let g:prettier#autoformat_config_present = 1
 " let g:prettier#autoformat_require_pragma = 0
 
-
 " redefine emmet trigger
 let g:user_emmet_leader_key='€'
 
@@ -474,6 +473,25 @@ nmap >¿c <Plug>(GitGutterPrevHunk)
 
 colorscheme gruvbox
 
+command WriteMode :call ConfigWriteMode()
+
+function ConfigWriteMode()
+  set bg=light
+  colorscheme morning 
+  hi EndOfBuffer ctermfg=LightGrey ctermbg=LightGrey
+  hi SignColumn ctermbg=LightGrey  
+  hi ColorColumn ctermbg=LightGrey ctermfg=blue
+  hi ExtraWhitespace ctermbg=LightGrey 
+  hi LineNr ctermfg=DarkGrey ctermbg=LightGrey
+  hi CursorLine cterm=NONE ctermbg=white ctermfg=blue
+  hi CursorColumn cterm=NONE ctermbg=white ctermfg=blue
+  hi CursorLineNr cterm=NONE ctermfg=blue ctermbg=LightGrey
+  hi Pmenu ctermbg=white
+  hi PmenuSel ctermbg=blue ctermfg=white
+  echo 'Changed to Write Mode.'
+
+endfunction
+
 " delete tildes in blank lines
 hi EndOfBuffer ctermfg=235 ctermbg=235
 hi SignColumn ctermbg=235
@@ -506,7 +524,7 @@ let g:lightline = {
         \ 'i' : 'I',
         \ 'R' : 'R',
         \ 'v' : 'V',
-        \ 'V' : 'V ',
+        \ 'V' : 'VL',
         \ "\<C-v>": 'VB',
         \ 'c' : 'C',
         \ 's' : 'S',
