@@ -68,7 +68,8 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+
+plugins=(git docker docker-compose)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -100,6 +101,19 @@ alias mkdir="mkdir -p"
 alias rmdir="rm -rf"
 alias cls="clear"
 alias zip="zip -r"
+alias docker="sudo docker"
+alias xampp="sudo /opt/lampp/lampp"
+
+alias dlf="docker logs -f"
+alias dst="docker stop"
+alias drn="docker run"
+alias dbl="docker build"
+alias dps="docker ps"
+alias drm="docker rm"
+
+alias dco="docker-compose"
+alias dcup="docker-compose up"
+alias dcdown="docker-compose down"
 
 # functions
 function dot() {
