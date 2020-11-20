@@ -647,11 +647,20 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 inoremap <c-j> <Nop>
 inoremap <c-k> <Nop>
 
-let g:coc_snippet_next = '<c-k>'
-let g:coc_snippet_prev = '<c-j>'
-
 " Search for the word under the cursor at project level
 nnoremap <leader>s :CocSearch <C-R>=expand("<cword>")<CR><CR>
+
+" Use <C-l> for trigger snippet expand.
+imap <C-k> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+let g:coc_snippet_next = '<c-k>'
+let g:coc_snippet_prev = '<c-j>'
 
 " add a new line when <CR> is pressed and the cursor is between two coc-pairs
 " allowed characters
