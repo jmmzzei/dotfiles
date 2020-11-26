@@ -70,6 +70,7 @@ xnoremap b q
 onoremap q b
 onoremap b q
 
+set ttimeoutlen=10
 set redrawtime=10000 
 set fillchars+=vert:│
 set backspace=2   " Backspace deletes like most programs in insert mode
