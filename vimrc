@@ -279,7 +279,7 @@ nnoremap <c-p> :Files<cr>
 
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
 " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
-set spellfile=$HOME/.vim-spell-en.utf-8.add
+" set spellfile=$HOME/.vim-spell-en.utf-7.add
 
 " Press * to search for the term under the cursor or a visual selection and
 " then press a key below to replace all instances of it in the current file.
@@ -417,6 +417,9 @@ autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.gra
 " for autoformating only when you have config file in directory or parent.
 " let g:prettier#autoformat_config_present = 1
 " let g:prettier#autoformat_require_pragma = 0
+
+" set spell for git commit message
+autocmd FileType gitcommit setlocal spell
 
 " redefine emmet trigger
 let g:user_emmet_leader_key='€'
