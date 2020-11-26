@@ -14,12 +14,12 @@ let g:netrw_winsize = 22
 nnoremap <silent> _ :CocCommand explorer<CR>
 
 " move lines
-nnoremap <A-k> :m .+1<CR>==
-nnoremap <A-l> :m .-2<CR>==
-inoremap <A-k> <Esc>:m .+1<CR>==gi
-inoremap <A-l> <Esc>:m .-2<CR>==gi
-vnoremap <A-k> :m '>+1<CR>gv=gv
-vnoremap <A-e release branch (recommend)> :m '<-2<CR>gv=gv
+" nnoremap <A-k> :m .+1<CR>==
+" nnoremap <A-l> :m .-2<CR>==
+" inoremap <A-k> <Esc>:m .+1<CR>==gi
+" inoremap <A-l> <Esc>:m .-2<CR>==gi
+" vnoremap <A-k> :m '>+1<CR>gv=gv
+" vnoremap <A-e release branch (recommend)> :m '<-2<CR>gv=gv
 
 " change active pane
 map <s-q> <C-W>h
@@ -31,7 +31,6 @@ imap kk <Esc>
 
 " copy from current position to the end of the line
 map Y y$
-
 
 " always paste the final yanked text
 nnoremap <leader>p "0p
@@ -381,7 +380,6 @@ Plug 'pangloss/vim-javascript'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'stephpy/vim-yaml'
 
-
 Plug 'tpope/vim-git'
 Plug 'vim-python/python-syntax'
 Plug 'wgwoods/vim-systemd-syntax'
@@ -393,6 +391,7 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'junegunn/goyo.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'joaohkfaria/vim-jest-snippets'
+
 call plug#end()
 
 nmap <Leader>f <Plug>(Prettier)
@@ -492,6 +491,8 @@ function ConfigWriteMode()
   hi CursorLineNr cterm=NONE ctermfg=blue ctermbg=LightGrey
   hi Pmenu ctermbg=white
   hi PmenuSel ctermbg=blue ctermfg=white
+  set spell
+  set spelllang=es
   echo 'Changed to Write Mode.'
 
 endfunction

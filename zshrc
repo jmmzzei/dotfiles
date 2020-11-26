@@ -103,6 +103,7 @@ alias cls="clear"
 alias zip="zip -r"
 alias docker="sudo docker"
 alias xampp="sudo /opt/lampp/lampp"
+alias mysql-start="sudo /etc/init.d/mysql start"
 
 alias dlf="docker logs -f"
 alias dst="docker stop"
