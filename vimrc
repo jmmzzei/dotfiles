@@ -391,8 +391,11 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'junegunn/goyo.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'joaohkfaria/vim-jest-snippets'
-
+Plug 'Yggdroot/indentLine'
 call plug#end()
+
+let g:indentLine_char = '▏'
+let g:indentLine_fileType = ['python', 'javascriptreact', 'html']
 
 nmap <Leader>f <Plug>(Prettier)
 let g:prettier#config#tab_width = '2'
