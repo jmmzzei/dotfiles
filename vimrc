@@ -110,7 +110,7 @@ set nospell
 set nostartofline
 set number relativenumber
 set numberwidth=5
-set regexpengine=1
+set regexpengine=0
 set scrolloff=2
 set showmatch
 set noshowmode
