@@ -236,11 +236,11 @@ nnoremap <space>gk :Commits<CR>
 
 " fugitive git bindings
 nnoremap <space>ga :Git add %:p<CR><CR>
-nnoremap <space>gs :vertical Gstatus<CR>
-nnoremap <space>gc :Gcommit -v -q<CR>
-nnoremap <space>gn :Gcommit -v --amend --no-edit<CR><CR>
+nnoremap <space>gs :vertical Git<CR>
+nnoremap <space>gc :Git commit -v -q<CR>
+nnoremap <space>gn :Git commit -v --amend --no-edit<CR><CR>
 nnoremap <space>gd :Gdiff<CR>
-nnoremap <space>gh :0Glog<CR>
+nnoremap <space>gh :Gclog %<CR>
 nnoremap <space>ge :Gedit<CR>
 nnoremap <space>gr :Gread<CR>
 nnoremap <space>gw :Gwrite<CR><CR>
@@ -251,6 +251,7 @@ nnoremap <space>gb :Git branch<Space>
 nnoremap <space>go :Git checkout<Space>
 nnoremap <space>gps :Dispatch! git push<CR>
 nnoremap <space>gpl :Dispatch! git pull<CR>
+cnoreabbrev blame Git blame
 
 " vim-test mappings
 nnoremap <silent> <Leader>t :TestFile<CR>
@@ -301,6 +302,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
 Plug 'mattn/emmet-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'neoclide/jsonc.vim'
@@ -327,9 +329,6 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-unimpaired'
 Plug 'machakann/vim-sandwich'
 Plug 'itchyny/lightline.vim'
-
-" Zoom in and out of a specific split pane (similar to tmux).
-Plug 'dhruvasagar/vim-zoom'
 
 Plug 'AndrewRadev/switch.vim'
 
@@ -366,31 +365,19 @@ Plug 'janko/vim-test'
 " Languages and file types.
 
 " Plug 'tmux-plugins/vim-tmux'
+Plug 'sheerun/vim-polyglot'
 
-Plug 'cakebaker/scss-syntax.vim'
-Plug 'chr4/nginx.vim'
 Plug 'chrisbra/csv.vim'
 Plug 'ekalinin/dockerfile.vim'
-Plug 'elixir-editors/vim-elixir'
-Plug 'Glench/Vim-Jinja2-Syntax'
-Plug 'jvirtanen/vim-hcl'
 Plug 'lifepillar/pgsql.vim'
-Plug 'othree/html5.vim'
-Plug 'pangloss/vim-javascript'
-Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'stephpy/vim-yaml'
 
 Plug 'tpope/vim-git'
-Plug 'vim-python/python-syntax'
-Plug 'wgwoods/vim-systemd-syntax'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
-Plug 'yuezk/vim-js'
-Plug 'maxmellon/vim-jsx-pretty'
 
 Plug 'junegunn/goyo.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-Plug 'joaohkfaria/vim-jest-snippets'
 Plug 'Yggdroot/indentLine'
 call plug#end()
 
@@ -473,9 +460,9 @@ xmap + ]
 
 " Jump between hgunks
 " git next
-nmap +c <Plug>(GitGutterNextHunk)  
+nmap +c <Plug>(GitGutterNextHunk)
 " git previous
-nmap >¿c <Plug>(GitGutterPrevHunk)  
+nmap >¿c <Plug>(GitGutterPrevHunk)
 
 colorscheme gruvbox
 
@@ -483,11 +470,11 @@ command WriteMode :call ConfigWriteMode()
 
 function ConfigWriteMode()
   set bg=light
-  colorscheme morning 
+  colorscheme morning
   hi EndOfBuffer ctermfg=LightGrey ctermbg=LightGrey
-  hi SignColumn ctermbg=LightGrey  
+  hi SignColumn ctermbg=LightGrey
   hi ColorColumn ctermbg=LightGrey ctermfg=blue
-  hi ExtraWhitespace ctermbg=LightGrey 
+  hi ExtraWhitespace ctermbg=LightGrey
   hi LineNr ctermfg=DarkGrey ctermbg=LightGrey
   hi CursorLine cterm=NONE ctermbg=white ctermfg=blue
   hi CursorColumn cterm=NONE ctermbg=white ctermfg=blue
