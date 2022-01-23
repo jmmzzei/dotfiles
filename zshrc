@@ -150,6 +150,7 @@ export FZF_DEFAULT_COMMAND='rg --files'
 export TERM=xterm-256color-italic
 # export TERM=vt100
 export FZF_DEFAULT_OPTS='--bind=ctrl-l:up,ctrl-k:down'
+export PATH="$PATH:/home/jmm/.yarn/bin:/home/jmm/home/bin"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
