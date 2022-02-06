@@ -105,6 +105,8 @@ alias docker="sudo docker"
 alias xampp="sudo /opt/lampp/lampp"
 alias mysql-start="sudo /etc/init.d/mysql start"
 alias py="python3"
+alias vi="nvim"
+alias vim="nvim"
 
 alias dlf="docker logs -f"
 alias dst="docker stop"
