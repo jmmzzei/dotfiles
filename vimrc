@@ -5,7 +5,6 @@ let mapleader = " "
 nnoremap <Space> <NOP>
 
 " netrw
-" nnoremap _ :Lexplore<CR>
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
@@ -15,14 +14,6 @@ let g:netrw_winsize = 22
 " coc-explorer
 nnoremap <silent> _ :CocCommand explorer<CR>
 
-" move lines
-" nnoremap <A-k> :m .+1<CR>==
-" nnoremap <A-l> :m .-2<CR>==
-" inoremap <A-k> <Esc>:m .+1<CR>==gi
-" inoremap <A-l> <Esc>:m .-2<CR>==gi
-" vnoremap <A-k> :m '>+1<CR>gv=gv
-" vnoremap <A-e release branch (recommend)> :m '<-2<CR>gv=gv
-
 " change active pane
 map <s-q> <C-W>h
 map <s-w> <C-W>w
@@ -31,18 +22,27 @@ map <s-w> <C-W>w
 imap jj <Esc>
 imap kk <Esc>
 
-" copy from current position to the end of the line
-map Y y$
-
 " always paste the final yanked text
 nnoremap <leader>p "0p
 vnoremap <leader>p "0p
 
-" insert a new line in normal mode
-nnoremap  <CR>  i<CR><esc>
-
 " clear registers
 command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
+
+colorscheme gruvbox
+
+" delete tildes in blank lines
+hi EndOfBuffer ctermfg=235 ctermbg=235
+hi SignColumn ctermbg=235
+hi ColorColumn ctermbg=0
+hi ExtraWhitespace ctermbg=235
+hi Comment cterm=italic
+" change diff colors
+hi DiffAdd ctermbg=236 ctermfg=142 cterm=NONE
+hi DiffDelete ctermfg=167 ctermbg=NONE cterm=NONE
+hi DiffText cterm=NONE ctermbg=238
+hi DiffChange cterm=NONE ctermbg=238 ctermfg=108
+
 
 " change vim navigations keys for my keyboard
 nnoremap ñ l
@@ -73,43 +73,22 @@ onoremap b q
 
 set ttimeoutlen=10
 set redrawtime=10000 
-set fillchars+=vert:│
-set backspace=2   " Backspace deletes like most programs in insert mode
-" Some servers have issues with backup files
-set nobackup
 set nowritebackup
 set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
-set history=50
-set ruler         " show the cursor position all the time
-set showcmd       " display incomplete commands
-set incsearch     " do incremental searching
-set laststatus=2  " Always display the status line
 set autowrite     " Automatically :write before running commands
 set modelines=0   " Disable modelines as a security precaution
 set nomodeline
-set autoindent
-set autoread
 set backspace=indent,eol,start
-set backupdir=/tmp//,.
 set clipboard=unnamedplus
 set completeopt=menuone,longest
-set cryptmethod=blowfish2
 set cursorline
-set directory=/tmp//,.
-set encoding=utf-8
-set smarttab
-set formatoptions=tcqrn1
-set hidden
-set hlsearch
 set ignorecase
 set matchpairs+=<:> " Use % to jump between pairs
 set mmp=5000
 set mouse=a
-set nocompatible
 set noerrorbells visualbell t_vb=
 set noshiftround
 set nospell
-set nostartofline
 set number relativenumber
 set numberwidth=5
 set regexpengine=0
@@ -123,17 +102,11 @@ set splitbelow
 set splitright
 set textwidth=0
 set ttimeout
-set ttyfast
-set ttymouse=sgr
-set undodir=/tmp
 set undofile
 set virtualedit=block
 set whichwrap=b,s,<,>
-set wildmenu
 set wildmode=full
-set wrap
 set updatetime=300
-set bg=dark
 set signcolumn=yes
 
 " Softtabs, 2 spaces
@@ -141,12 +114,6 @@ set tabstop=2
 set shiftwidth=2
 set shiftround
 set expandtab
-
-" Use one space, not two, after punctuation.
-set nojoinspaces
-
-" https://stackoverflow.com/questions/2169645/vims-autocomplete-is-excruciatingly-slow/2460593#2460593
-set complete-=i
 
 " Autocomplete with dictionary words when spell check is on
 " set complete+=kspell
@@ -159,12 +126,6 @@ command WQ wq
 command Wq wq
 command W w
 command Q q
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
-  syntax on
-endif
 
 if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
@@ -302,26 +263,22 @@ xnoremap <silent> s* "sy:let @/=@s<CR>cgn
 let g:indentLine_char = '▏'
 let g:indentLine_fileType = ['python', 'javascriptreact', 'html']
 
+" Prettier configurations
 nmap <Leader>f <Plug>(Prettier)
 let g:prettier#config#tab_width = '2'
 let g:prettier#config#trailing_comma = 'all' 
 let g:prettier#config#semi = 'false'
 let g:prettier#config#bracket_spacing = 'true' 
-
 " force vim-prettier to be async
 let g:prettier#exec_cmd_async = 1
-
 " disable errors display in the quickfix
 let g:prettier#quickfix_enabled = 0
-
-" autoformat even if a .prettierrc file doesn't exist in the current directory
-let g:prettier#autoformat_config_present = 0
-
 " run before saving
 let g:prettier#autoformat = 1
 let g:prettier#autoformat_require_pragma = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-
+" autoformat even if a .prettierrc file doesn't exist in the current directory
+let g:prettier#autoformat_config_present = 0
 " for autoformating only when you have config file in directory or parent.
 " let g:prettier#autoformat_config_present = 1
 " let g:prettier#autoformat_require_pragma = 0
@@ -332,7 +289,7 @@ autocmd FileType gitcommit setlocal spell
 " redefine emmet trigger
 let g:user_emmet_leader_key='€'
 
-" set the gitgutter signs bg to the same bg color of the theme
+" set the gitgutter signs bg to the same theme's bg color
 let g:gitgutter_override_sign_column_highlight = 1
 
 " change some gitgutter signs
@@ -347,7 +304,7 @@ let g:switch_custom_definitions =
     \   ['block', 'none'],
     \   ['row', 'column'],
     \   ['left', 'right'],
-    \   ['padding', 'margin'], 
+    \   ['padding', 'margin'],
     \   ['height', 'width'],
     \   ['vw', 'vh'],
     \   ['top', 'bottom'],
@@ -367,56 +324,11 @@ let g:switch_custom_definitions =
     \   ['pick', 'squash', 'edit'],
     \ ]
 
-
-" vim-unimpaired alternatives for my non-US keyboard
-nmap ¿ [
-nmap + ]
-omap ¿ [
-omap + ]
-xmap ¿ [
-xmap + ]
-
 " Jump between hgunks
 " git next
 nmap +c <Plug>(GitGutterNextHunk)
 " git previous
-nmap >¿c <Plug>(GitGutterPrevHunk)
-
-colorscheme gruvbox
-
-command WriteMode :call ConfigWriteMode()
-
-function ConfigWriteMode()
-  set bg=light
-  colorscheme morning
-  hi EndOfBuffer ctermfg=LightGrey ctermbg=LightGrey
-  hi SignColumn ctermbg=LightGrey
-  hi ColorColumn ctermbg=LightGrey ctermfg=blue
-  hi ExtraWhitespace ctermbg=LightGrey
-  hi LineNr ctermfg=DarkGrey ctermbg=LightGrey
-  hi CursorLine cterm=NONE ctermbg=white ctermfg=blue
-  hi CursorColumn cterm=NONE ctermbg=white ctermfg=blue
-  hi CursorLineNr cterm=NONE ctermfg=blue ctermbg=LightGrey
-  hi Pmenu ctermbg=white
-  hi PmenuSel ctermbg=blue ctermfg=white
-  set spell
-  set spelllang=es
-  echo 'Changed to Write Mode.'
-
-endfunction
-
-" delete tildes in blank lines
-hi EndOfBuffer ctermfg=235 ctermbg=235
-hi SignColumn ctermbg=235
-hi ColorColumn ctermbg=0
-hi ExtraWhitespace ctermbg=235
-hi Comment cterm=italic
-
-" change diff colors
-hi DiffAdd ctermbg=236 ctermfg=142 cterm=NONE
-hi DiffDelete ctermfg=167 ctermbg=235 cterm=NONE
-hi DiffText cterm=NONE ctermbg=238
-hi DiffChange cterm=NONE ctermbg=238 ctermfg=108
+nmap +C <Plug>(GitGutterPrevHunk)
 
 let g:lightline = {
       \ 'active': {
@@ -450,9 +362,6 @@ let g:lightline = {
 " toggle comments
 nmap ; gcc
 vmap ; gc
-
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
 
 " treat visual lines as real lines when a long line wrap occurs
 noremap <silent> l gk
