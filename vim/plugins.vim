@@ -6,7 +6,6 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'mattn/emmet-vim'
 Plug 'airblade/vim-gitgutter'
-Plug 'neoclide/jsonc.vim'
 " Automatically clear search highlights after you move your cursor.
 Plug 'haya14busa/is.vim'
 " Better manage Vim sessions.
@@ -26,8 +25,10 @@ Plug 'prettier/vim-prettier', {
 
 " Automatically set 'shiftwidth' + 'expandtab' (indention) based on file type.
 Plug 'tpope/vim-sleuth'
+
 " A number of useful motions for the quickfix list, pasting and more.
 Plug 'tpope/vim-unimpaired'
+
 Plug 'machakann/vim-sandwich'
 Plug 'itchyny/lightline.vim'
 
@@ -69,8 +70,6 @@ Plug 'janko/vim-test'
 Plug 'sheerun/vim-polyglot'
 
 Plug 'chrisbra/csv.vim'
-Plug 'ekalinin/dockerfile.vim'
-Plug 'lifepillar/pgsql.vim'
 Plug 'stephpy/vim-yaml'
 
 Plug 'tpope/vim-git'
