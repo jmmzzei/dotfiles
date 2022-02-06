@@ -1,6 +1,8 @@
 " Specify a directory for plugins.
 call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
@@ -79,4 +81,7 @@ Plug 'honza/vim-snippets'
 Plug 'junegunn/goyo.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'Yggdroot/indentLine'
+
+Plug 'editorconfig/editorconfig-vim'
+
 call plug#end()

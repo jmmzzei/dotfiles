@@ -29,19 +29,24 @@ vnoremap <leader>p "0p
 " clear registers
 command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
 
-colorscheme gruvbox
+let g:tokyonight_style = "night"
+let g:tokyonight_italic_functions = 1
+let g:tokyonight_italic_variables = 1
+colorscheme tokyonight
 
-" delete tildes in blank lines
-hi EndOfBuffer ctermfg=235 ctermbg=235
-hi SignColumn ctermbg=235
-hi ColorColumn ctermbg=0
-hi ExtraWhitespace ctermbg=235
-hi Comment cterm=italic
-" change diff colors
-hi DiffAdd ctermbg=236 ctermfg=142 cterm=NONE
-hi DiffDelete ctermfg=167 ctermbg=NONE cterm=NONE
-hi DiffText cterm=NONE ctermbg=238
-hi DiffChange cterm=NONE ctermbg=238 ctermfg=108
+" colorscheme gruvbox
+
+" " delete tildes in blank lines
+" hi EndOfBuffer ctermfg=235 ctermbg=235
+" hi SignColumn ctermbg=235
+" hi ColorColumn ctermbg=0
+" hi ExtraWhitespace ctermbg=235
+" hi Comment cterm=italic
+" " change diff colors
+" hi DiffAdd ctermbg=236 ctermfg=142 cterm=NONE
+" hi DiffDelete ctermfg=167 ctermbg=NONE cterm=NONE
+" hi DiffText cterm=NONE ctermbg=238
+" hi DiffChange cterm=NONE ctermbg=238 ctermfg=108
 
 
 " change vim navigations keys for my keyboard
@@ -114,6 +119,8 @@ set tabstop=2
 set shiftwidth=2
 set shiftround
 set expandtab
+" Better display for messages
+set cmdheight=1
 
 " Autocomplete with dictionary words when spell check is on
 " set complete+=kspell
@@ -299,6 +306,7 @@ nmap +c <Plug>(GitGutterNextHunk)
 " git previous
 nmap +C <Plug>(GitGutterPrevHunk)
 
+let g:lightline = {'colorscheme': 'tokyonight'}
 let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
