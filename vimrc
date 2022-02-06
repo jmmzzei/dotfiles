@@ -306,7 +306,6 @@ nmap +c <Plug>(GitGutterNextHunk)
 " git previous
 nmap +C <Plug>(GitGutterPrevHunk)
 
-let g:lightline = {'colorscheme': 'tokyonight'}
 let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
@@ -321,6 +320,7 @@ let g:lightline = {
       \ 'component_function': {
       \   'gitbranch': 'FugitiveHead'
       \ },
+      \ 'colorscheme': 'tokyonight',
       \ 'mode_map': {
         \ 'n' : 'N',
         \ 'i' : 'I',
@@ -335,6 +335,7 @@ let g:lightline = {
         \ 't': 'T',
         \ },
       \ }
+
 
 " toggle comments
 nmap ; gcc
