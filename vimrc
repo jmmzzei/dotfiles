@@ -252,7 +252,7 @@ let g:prettier#quickfix_enabled = 0
 " run before saving
 let g:prettier#autoformat = 1
 let g:prettier#autoformat_require_pragma = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.jsonc,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 " autoformat even if a .prettierrc file doesn't exist in the current directory
 let g:prettier#autoformat_config_present = 0
 " for autoformating only when you have config file in directory or parent.
