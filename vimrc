@@ -22,6 +22,10 @@ map <s-w> <C-W>w
 imap jj <Esc>
 imap kk <Esc>
 
+" escape insert mode quickly in temrinal mode
+tnoremap kk <C-\><C-n>
+tnoremap jj <C-\><C-n>
+
 " always paste the final yanked text
 nnoremap <leader>p "0p
 vnoremap <leader>p "0p
@@ -67,6 +71,7 @@ vnoremap j h
 
 " save on buffer leaves or vim's focus is lost
 autocmd BufLeave,FocusLost * silent! wall
+
 
 " toggle backward cursor and record macro key
 nnoremap q b
@@ -177,6 +182,9 @@ inoremap <S-Tab> <C-n>
 " perform a ripgrep search
 nnoremap <leader>e :Rg<CR>
 
+" perform a ripgrep search in visual mode
+vnoremap <space>e "jy:Rg <C-R>j<CR>
+
 " fzf key bindings
 nnoremap <space>gk :Commits<CR>
 
@@ -237,7 +245,7 @@ nnoremap <silent> s* :let @/='\<'.expand('<cword>').'\>'<CR>cgn
 xnoremap <silent> s* "sy:let @/=@s<CR>cgn
 
 let g:indentLine_char = '▏'
-let g:indentLine_fileType = ['python', 'javascriptreact', 'html']
+let g:indentLine_fileType = ['python', 'javascriptreact', 'html', 'hbl']
 
 " Prettier configurations
 nmap <Leader>f <Plug>(Prettier)
@@ -252,14 +260,14 @@ let g:prettier#quickfix_enabled = 0
 " run before saving
 let g:prettier#autoformat = 1
 let g:prettier#autoformat_require_pragma = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.jsonc,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.jsonc,*.graphql,*.md,*.vue,*.yaml,*.html,*hbs PrettierAsync
 " autoformat even if a .prettierrc file doesn't exist in the current directory
 let g:prettier#autoformat_config_present = 0
 " for autoformating only when you have config file in directory or parent.
 " let g:prettier#autoformat_config_present = 1
 " let g:prettier#autoformat_require_pragma = 0
 
-" set spell for git commit message
+" set spell for git commit message and markdown filetypes
 autocmd FileType gitcommit setlocal spell
 
 " redefine emmet trigger
@@ -278,8 +286,8 @@ autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
 let g:switch_custom_definitions =
     \ [
     \   ['block', 'none'],
-    \   ['row', 'column'],
     \   ['left', 'right'],
+    \   ['first', 'last'],
     \   ['padding', 'margin'],
     \   ['height', 'width'],
     \   ['vw', 'vh'],
@@ -290,14 +298,29 @@ let g:switch_custom_definitions =
     \   ['desktop', 'mobile', 'tablet'],
     \   ['absolute', 'relative', 'fixed'],
     \   ['blue', 'red', 'green'],
+    \   ['after', 'before'],
     \   ['0', '1'],
     \   ['ASC', 'DESC'],
     \   ['center', 'space-between'],
     \   ['get', 'set'],
+    \   ['col', 'row'],
     \   ['request', 'response'],
     \   ['params', 'query'],
     \   ['Request', 'Response'],
     \   ['pick', 'squash', 'edit'],
+    \   ['horizontalAlign', 'verticalAlign'],
+    \   ['marginRight', 'marginLeft'],
+    \   ['marginTop', 'marginBottom'],
+    \   ['paddingRight', 'paddingLeft'],
+    \   ['paddingTop', 'paddingBottom'],
+    \   ['preventHorizontalStretch', 'preventVerticalStretch'],
+    \   ['borderColor', 'borderWidth'],
+    \   ['colGap', 'rowGap'],
+    \   ['footer', 'header'],
+    \   ['anchor', 'button'],
+    \   ['visible', 'hidden'],
+    \   ['even', 'odd'],
+    \   ['textAlignment', 'textPosition'],
     \ ]
 
 " Jump between hgunks
@@ -347,14 +370,9 @@ noremap <silent> k gj
 noremap <silent> 0 g0
 noremap <silent> $ g$
 
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" Treat pure javascript and typescript files as jsx/tsx
+au BufRead,BufNewFile *.js,*jsx set filetype=javascriptreact
+au BufRead,BufNewFile *.ts,*tsx set filetype=typescriptreact
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -448,6 +466,21 @@ omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 
+" when cursoring over a word, I see either the diagnostic if it exists, otherwise the documentation.
+" https://thoughtbot.com/blog/modern-typescript-and-react-development-in-vim
+function! ShowDocIfNoDiagnostic(timer_id)
+  if (coc#float#has_float() == 0 && CocHasProvider('hover') == 1)
+    silent call CocActionAsync('doHover')
+  endif
+endfunction
+
+function! s:show_hover_doc()
+  call timer_start(500, 'ShowDocIfNoDiagnostic')
+endfunction
+
+autocmd CursorHoldI * :call <SID>show_hover_doc()
+autocmd CursorHold * :call <SID>show_hover_doc()
+
 " Use CTRL-S for selections ranges.
 " Requires 'textDocument/selectionRange' support of LS, ex: coc-tsserver
 nmap <silent> <C-s> <Plug>(coc-range-select)
@@ -468,19 +501,21 @@ inoremap <c-k> <Nop>
 " Search for the word under the cursor at project level
 nnoremap <leader>s :CocSearch <C-R>=expand("<cword>")<CR><CR>
 
+" Search for the word under the cursor at project level in visual mode
+" vnoremap <space>s "hy:CocSearch <C-R>h<CR>
+
 " Use <C-l> for trigger snippet expand.
-imap <C-k> <Plug>(coc-snippets-expand)
+" imap <C-k> <Plug>(coc-snippets-expand)
 
 " Use <C-j> for select text for visual placeholder of snippet.
-vmap <C-j> <Plug>(coc-snippets-select)
+" vmap <C-j> <Plug>(coc-snippets-select)
 
 " Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-j> <Plug>(coc-snippets-expand-jump)
-
-let g:coc_snippet_next = '<c-k>'
+" imap <C-j> <Plug>(coc-snippets-expand-jump)
 let g:coc_snippet_prev = '<c-j>'
+let g:coc_snippet_next = '<c-k>'
 
-" add a new line when <CR> is pressed and the cursor is between two coc-pairs
+" add r new line when <CR> is pressed and the cursor is between two coc-pairs
 " allowed characters
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                         \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
@@ -498,3 +533,41 @@ nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
 nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+
+" ---------------------- Start autocomplete config ----------------------
+" Needed to make the autocomple work. Run :h coc-completion to more info
+" Use <tab> and <S-tab> to navigate completion list: >
+" Insert <tab> when previous text is space, refresh completion if not.
+inoremap <silent><expr> <s-TAB>
+\ coc#pum#visible() ? coc#pum#next(1):
+\ <SID>check_back_space() ? "\<Tab>" :
+\ coc#refresh()
+" inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+" inoremap <silent><expr> <CR> coc#pum#visible() ? coc#_select_confirm()
+"     \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+""Use <c-space> to trigger completion: >
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+"To make <CR> to confirm selection of selected complete item or notify coc.nvim to format on enter, use: >
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#_select_confirm()
+      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" FOR NOW, I'M NOT USING THIS FEATURE
+ " Map <tab> for trigger completion, completion confirm, snippet expand and jump like VSCode: >
+inoremap <silent><expr> <TAB>
+  \ coc#pum#visible() ? coc#_select_confirm() :
+  \ coc#expandableOrJumpable() ?
+  \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+" ---------------------- End autocomplete config ----------------------
