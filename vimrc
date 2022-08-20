@@ -18,6 +18,10 @@ nnoremap <silent> _ :CocCommand explorer<CR>
 map <s-q> <C-W>h
 map <s-w> <C-W>w
 
+" escape terminal mode quickly
+tnoremap kk <C-\><C-n>
+tnoremap jj <C-\><C-n>
+
 " escape insert mode quickly
 imap jj <Esc>
 imap kk <Esc>
@@ -52,6 +56,9 @@ colorscheme tokyonight
 " hi DiffText cterm=NONE ctermbg=238
 " hi DiffChange cterm=NONE ctermbg=238 ctermfg=108
 
+" read javascript and typescript as filetype *react
+autocmd FileType typescript set filetype=typescriptreact
+autocmd FileType javascript set filetype=javascriptreact
 
 " change vim navigations keys for my keyboard
 nnoremap ñ l
