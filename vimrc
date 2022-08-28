@@ -1,5 +1,11 @@
 so ~/.dotfiles/vim/plugins.vim
 
+" when a zsh terminal is opened, fix the height to 10 and enter insert mode
+au TermOpen term:/*/usr/bin/zsh :resize 10 | startinsert
+
+" command to open a terminal in a horizontally splitted pane
+command! TT :sp | term
+
 " Leader
 let mapleader = " "
 nnoremap <Space> <NOP>
