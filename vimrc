@@ -6,6 +6,9 @@ au TermOpen term:/*/usr/bin/zsh :resize 10 | startinsert
 " command to open a terminal in a horizontally splitted pane
 command! TT :sp | term
 
+cnoreabbrev Delete Delete!
+cnoreabbrev Del Delete!
+
 " Leader
 let mapleader = " "
 nnoremap <Space> <NOP>
