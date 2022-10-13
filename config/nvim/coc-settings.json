@@ -2,8 +2,8 @@
   "explorer.width": 40,
   "explorer.icon.enableNerdfont": false,
   "explorer.previewAction.onHover": false,
-  "explorer.file.showHiddenFiles ": true,
-  "explorer.icon.enableVimDevicons": false,
+  "explorer.file.showHiddenFiles": true,
+  "snippets.excludePatterns": ["**/*jquery.snippets","**/*angular.snippets", "**/*ember.snippets", "**/*jasmine-arrow.snippets","**/*jasmine.snippets","**/*bemjson.snippets","**/*openui5.snippets","**/*mocha.snippets","**/*requirejs.snippets"],
   "explorer.keyMappings.global": {
     "<cr>": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
     "l": "nodePrev",
