@@ -261,7 +261,7 @@ nnoremap <silent> s* :let @/='\<'.expand('<cword>').'\>'<CR>cgn
 xnoremap <silent> s* "sy:let @/=@s<CR>cgn
 
 let g:indentLine_char = '▏'
-let g:indentLine_fileType = ['python', 'javascriptreact', 'html', 'hbl']
+let g:indentLine_fileType = ['python', 'javascriptreact', 'typescriptreact', 'html', 'hbl']
 
 " Prettier configurations
 nmap <Leader>f <Plug>(Prettier)
@@ -337,6 +337,7 @@ let g:switch_custom_definitions =
     \   ['visible', 'hidden'],
     \   ['even', 'odd'],
     \   ['textAlignment', 'textPosition'],
+    \   ['Increment', 'Decrement'],
     \ ]
 
 " Jump between hgunks
@@ -587,3 +588,20 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 " ---------------------- End autocomplete config ----------------------
+
+" enables coc-emmet manually
+function EmmetEnable()
+  call CocActionAsync('activeExtension', 'coc-emmet')
+endfunction
+
+" disables coc-emmet manually
+function EmmetDisable()
+  call CocActionAsync('deactivateExtension', 'coc-emmet')
+endfunction
+
+" disables emmet every time a buffer of type jsx o tsx is created
+" can't do this with coc-settings because is imposible to re-enable it.
+autocmd BufAdd *.tsx,*.jsx EmmetDisable
+
+command EmmetDisable call EmmetDisable()
+command EmmetEnable call EmmetEnable()
