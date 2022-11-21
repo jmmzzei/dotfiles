@@ -287,7 +287,7 @@ let g:prettier#autoformat_config_present = 0
 autocmd FileType gitcommit setlocal spell
 
 " redefine emmet trigger
-let g:user_emmet_leader_key='€'
+let g:user_emmet_leader_key=','
 
 " set the gitgutter signs bg to the same theme's bg color
 let g:gitgutter_override_sign_column_highlight = 1
@@ -588,20 +588,3 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 " ---------------------- End autocomplete config ----------------------
-
-" enables coc-emmet manually
-function EmmetEnable()
-  call CocActionAsync('activeExtension', 'coc-emmet')
-endfunction
-
-" disables coc-emmet manually
-function EmmetDisable()
-  call CocActionAsync('deactivateExtension', 'coc-emmet')
-endfunction
-
-" disables emmet every time a buffer of type jsx o tsx is created
-" can't do this with coc-settings because is imposible to re-enable it.
-autocmd BufAdd *.tsx,*.jsx EmmetDisable
-
-command EmmetDisable call EmmetDisable()
-command EmmetEnable call EmmetEnable()
