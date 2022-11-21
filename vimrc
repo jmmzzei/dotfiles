@@ -538,6 +538,9 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                         \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Mappings using CoCList:
+" Show current buffer diagnostics.
+nnoremap <silent> <space>d  :CocDiagnostics 5<CR>
+
 " Show all diagnostics.
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 " Show commands.
