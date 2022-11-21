@@ -588,3 +588,12 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 " ---------------------- End autocomplete config ----------------------
+
+" Disable suggestions of words that are in the same file (around) or in
+" other buffers (buffer) to keep the autocomplete list as short and clean as possible.
+autocmd FileType * let b:coc_disabled_sources = ['around', 'buffer']
+
+" In some filetypes this option might be useful.
+autocmd FileType markdown,json let b:coc_disabled_sources = []
+
+
