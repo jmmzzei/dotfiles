@@ -196,13 +196,17 @@ inoremap <Tab> <C-r>=InsertTabWrapper()<CR>
 inoremap <S-Tab> <C-n>
 
 " perform a ripgrep search
+" if, in the future, you want to pass options to the process, use jesseleite/vim-agriculture
 nnoremap <leader>e :Rg<CR>
 
 " perform a ripgrep search in visual mode
 vnoremap <space>e "jy:Rg <C-R>j<CR>
 
-" fzf key bindings
+" fzf key binding: show project's commits
 nnoremap <space>gk :Commits<CR>
+
+" fzf key binding: show buffer's commits
+nnoremap <space>gj :BCommits<CR>
 
 " fugitive git bindings
 nnoremap <space>ga :Git add %:p<CR><CR>
@@ -598,5 +602,3 @@ autocmd FileType * let b:coc_disabled_sources = ['around', 'buffer']
 
 " In some filetypes this option might be useful.
 autocmd FileType markdown,json let b:coc_disabled_sources = []
-
-
