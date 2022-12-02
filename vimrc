@@ -124,6 +124,7 @@ set noshowmode
 set smartcase
 set softtabstop=2
 set spelllang=en_us
+set spellsuggest=8
 set splitbelow
 set splitright
 set textwidth=0
@@ -288,7 +289,7 @@ let g:prettier#autoformat_config_present = 0
 " let g:prettier#autoformat_require_pragma = 0
 
 " set spell for git commit message and markdown filetypes
-autocmd FileType gitcommit setlocal spell
+autocmd FileType gitcommit,markdown setlocal spell
 
 " redefine emmet trigger
 let g:user_emmet_leader_key=','
