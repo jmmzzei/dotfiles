@@ -589,3 +589,8 @@ autocmd FileType * let b:coc_disabled_sources = ['around', 'buffer']
 
 " In some filetypes this option might be useful.
 autocmd FileType markdown,json let b:coc_disabled_sources = []
+
+let g:vimwiki_list = [{'path': '~/Documentos/notes/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+
+nmap <Leader>ww :100vs \| :VimwikiIndex<CR>
