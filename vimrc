@@ -271,20 +271,22 @@ let g:indentLine_fileType = ['python', 'javascriptreact', 'typescriptreact', 'ht
 " Prettier configurations
 nmap <Leader>f <Plug>(Prettier)
 let g:prettier#config#tab_width = '2'
-let g:prettier#config#trailing_comma = 'all' 
+let g:prettier#config#trailing_comma = 'all'
 let g:prettier#config#semi = 'false'
-let g:prettier#config#bracket_spacing = 'true' 
+let g:prettier#config#bracket_spacing = 'true'
 " force vim-prettier to be async
 let g:prettier#exec_cmd_async = 1
 " disable errors display in the quickfix
 let g:prettier#quickfix_enabled = 0
 " run before saving
 let g:prettier#autoformat = 1
-let g:prettier#autoformat_require_pragma = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.jsonc,*.graphql,*.md,*.vue,*.yaml,*.html,*hbs PrettierAsync
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.jsonc,*.graphql,*.md,*.vue,*.yaml,*.html,*hbs :silent! PrettierAsync
+
 " autoformat even if a .prettierrc file doesn't exist in the current directory
 let g:prettier#autoformat_config_present = 0
-" for autoformating only when you have config file in directory or parent.
+let g:prettier#autoformat_require_pragma = 0
+
+" for autoformating only when you have config file in directory or parent:
 " let g:prettier#autoformat_config_present = 1
 " let g:prettier#autoformat_require_pragma = 0
 
