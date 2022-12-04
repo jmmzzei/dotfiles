@@ -590,7 +590,18 @@ autocmd FileType * let b:coc_disabled_sources = ['around', 'buffer']
 " In some filetypes this option might be useful.
 autocmd FileType markdown,json let b:coc_disabled_sources = []
 
-let g:vimwiki_list = [{'path': '~/Documentos/notes/',
+function! IsOnSomeParticularMachine(hostname)
+    return match(hostname(), a:hostname) >= 0
+endfunction
+
+function GetNotesFolder()
+  if IsOnSomeParticularMachine("jmm-pc")
+    return "~/Documents/notes"
+  else
+    return "~/Documentos/notes"
+endfunction
+
+let g:vimwiki_list = [{'path': GetNotesFolder(),
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
 nmap <Leader>ww :100vs \| :VimwikiIndex<CR>
