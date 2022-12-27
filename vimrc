@@ -294,7 +294,7 @@ let g:prettier#autoformat_require_pragma = 0
 autocmd FileType gitcommit,markdown setlocal spell
 
 " redefine emmet trigger
-let g:user_emmet_leader_key='-'
+" let g:user_emmet_leader_key='-'
 
 " set the gitgutter signs bg to the same theme's bg color
 let g:gitgutter_override_sign_column_highlight = 1
@@ -607,3 +607,5 @@ let g:vimwiki_list = [{'path': GetNotesFolder(),
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
 nmap <Leader>ww :100vs \| :VimwikiIndex<CR>
+
+nmap <silent>gvd :call CocAction('jumpDefinition', 'vsplit')<CR>
