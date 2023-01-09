@@ -1,10 +1,10 @@
 so ~/.dotfiles/vim/plugins.vim
 
 " when a zsh terminal is opened, fix the height to 10 and enter insert mode
-au TermOpen term:/*/usr/bin/zsh :resize 10 | startinsert
+au TermOpen term:/*/usr/bin/zsh startinsert
 
 " command to open a terminal in a horizontally splitted pane
-command! TT :sp | term
+command! TT :10sp | term
 
 cnoreabbrev Delete Delete!
 cnoreabbrev Del Delete!
@@ -292,9 +292,6 @@ let g:prettier#autoformat_require_pragma = 0
 
 " set spell for git commit message and markdown filetypes
 autocmd FileType gitcommit,markdown setlocal spell
-
-" redefine emmet trigger
-" let g:user_emmet_leader_key='-'
 
 " set the gitgutter signs bg to the same theme's bg color
 let g:gitgutter_override_sign_column_highlight = 1
