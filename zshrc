@@ -69,7 +69,7 @@ DISABLE_AUTO_TITLE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-plugins=(git docker docker-compose)
+plugins=(git docker docker-compose zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -137,6 +137,9 @@ function dot() {
 function mkd() {
   mkdir -p "$1" && cd "$1"
 }
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=4"
+bindkey '^[[Z' autosuggest-accept
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
