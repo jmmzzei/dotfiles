@@ -84,5 +84,5 @@ Plug 'Yggdroot/indentLine'
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'vimwiki/vimwiki'
-
+Plug 'AndrewRadev/tagalong.vim'
 call plug#end()
