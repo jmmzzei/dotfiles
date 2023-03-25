@@ -606,3 +606,11 @@ let g:vimwiki_list = [{'path': GetNotesFolder(),
 nmap <Leader>ww :100vs \| :VimwikiIndex<CR>
 
 nmap <silent>gvd :call CocAction('jumpDefinition', 'vsplit')<CR>
+
+function! CreateReminder()
+  let selected_text = getline(".")
+  let reminder_text = "Recordatorio: " . selected_text
+  execute "!notify-send -u critical '" . reminder_text . "' | at now + 2 minutes"
+endfunction
+
+nnoremap <leader>k :call CreateReminder()<CR>
