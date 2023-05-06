@@ -7,7 +7,23 @@ return require("packer").startup(function(use)
 
 	use("machakann/vim-sandwich")
 
+	use("airblade/vim-gitgutter")
+
+	use("haya14busa/is.vim")
+
 	use("tpope/vim-fugitive")
+
+	use("machakann/vim-sandwich")
+
+	use("sheerun/vim-polyglot")
+
+	use("junegunn/goyo.vim")
+
+	use("editorconfig/editorconfig-vim")
+
+	use("vimwiki/vimwiki")
+
+	use("Yggdroot/indentLine")
 
 	use({
 		"williamboman/mason.nvim",
