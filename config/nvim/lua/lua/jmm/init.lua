@@ -1,1 +1,0 @@
-/home/jmm/.dotfiles/config/nvim/lua/jmm/init.lua
