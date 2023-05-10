@@ -13,6 +13,12 @@ return require("packer").startup(function(use)
 
 	use("tpope/vim-fugitive")
 
+	use("tpope/vim-unimpaired")
+
+	use("tpope/vim-eunuch")
+
+	use("tpope/vim-commentary")
+
 	use("sheerun/vim-polyglot")
 
 	use("junegunn/goyo.vim")
@@ -135,6 +141,11 @@ return require("packer").startup(function(use)
 			})
 		end,
 	})
+
+	-- Automatically set 'shiftwidth' + 'expandtab' (indention) based on file type.
+	use("tpope/vim-sleuth")
+
+	use("m4xshen/autoclose.nvim")
 
 	use("RRethy/vim-illuminate")
 end)

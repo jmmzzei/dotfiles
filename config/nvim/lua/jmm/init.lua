@@ -1,6 +1,9 @@
 require("jmm.remap")
 require("jmm.set")
 
+-- Move this
+require("autoclose").setup()
+
 -- VIMWIKI Config
 -- Must be placed here because of this: https://github.com/vimwiki/vimwiki/issues/1130#issuecomment-1373515122
 local function isOnSomeParticularMachine(hostname)

@@ -62,18 +62,20 @@ vim.cmd("au TermOpen term:/*/usr/bin/zsh startinsert")
 -- Command to open a horizontally split terminal pane
 vim.cmd("command! TT :10sp | term")
 
--- Create command-line abbreviations for "Delete" and "Del"
-vim.cmd("cnoreabbrev Delete Delete!")
-vim.cmd("cnoreabbrev Del Delete!")
-
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 vim.keymap.set("n", "_", ":Neotree toggle<CR>", { silent = true })
 
--- toggle comments
-vim.keymap.set("n", "_", ":Neotree toggle<CR>", { silent = true })
-
+-- vim-commentary - toggle comments
 vim.api.nvim_set_keymap("n", ";", "gcc", { silent = true })
 vim.api.nvim_set_keymap("v", ";", "gc", { silent = true })
+
+-- indentLine
+vim.g.indentLine_char = "▏"
+vim.g.indentLine_fileType = { "python", "javascriptreact", "typescriptreact", "html", "hbl" }
+
+-- vim-eunuch
+vim.cmd("cabbrev Delete Delete!")
+vim.cmd("cabbrev Del Delete!")
