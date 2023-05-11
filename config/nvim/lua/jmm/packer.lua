@@ -48,6 +48,12 @@ return require("packer").startup(function(use)
 		requires = "nvim-tree/nvim-web-devicons",
 		config = function()
 			require("trouble").setup({
+				action_keys = { -- key mappings for actions in the trouble list
+					-- map to {} to remove a mapping, for example:
+					-- close = {},
+					previous = "l", -- previous item
+					next = "k", -- next item
+				},
 				-- your configuration comes here
 				-- or leave it empty to use the default settings
 				-- refer to the configuration section below
