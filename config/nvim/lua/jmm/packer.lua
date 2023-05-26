@@ -172,7 +172,11 @@ return require("packer").startup(function(use)
 	-- Automatically set 'shiftwidth' + 'expandtab' (indention) based on file type.
 	use("tpope/vim-sleuth")
 
-	use("m4xshen/autoclose.nvim")
+	use("m4xshen/autoclose.nvim", {
+		config = function()
+			require("autoclose").setup()
+		end,
+	})
 
 	use("RRethy/vim-illuminate")
 end)
