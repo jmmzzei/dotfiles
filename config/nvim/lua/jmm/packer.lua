@@ -16,8 +16,18 @@ return require("packer").startup(function(use)
 	use("tpope/vim-unimpaired")
 
 	use("tpope/vim-eunuch")
+	use("tpope/vim-eunuch")
 
-	use("tpope/vim-commentary")
+	use({
+		"numToStr/Comment.nvim",
+		requires = "JoosepAlviste/nvim-ts-context-commentstring",
+		config = function()
+			require("Comment").setup({
+				pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+			})
+		end,
+	})
+	-- use("tpope/vim-commentary")
 
 	use("sheerun/vim-polyglot")
 
@@ -33,6 +43,8 @@ return require("packer").startup(function(use)
 		"williamboman/mason.nvim",
 		run = ":MasonUpdate", -- :MasonUpdate updates registry contents
 	})
+
+	use("nvim-tree/nvim-web-devicons")
 
 	use({
 		"nvim-lualine/lualine.nvim",
