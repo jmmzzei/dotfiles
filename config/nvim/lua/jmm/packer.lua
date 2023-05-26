@@ -78,7 +78,16 @@ return require("packer").startup(function(use)
 			-- Autocompletion
 			{ "hrsh7th/nvim-cmp" }, -- Required
 			{ "hrsh7th/cmp-nvim-lsp" }, -- Required
-			{ "L3MON4D3/LuaSnip" }, -- Required
+			{
+				"L3MON4D3/LuaSnip",
+				-- follow latest release.
+				tag = "v<CurrentMajor>.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+				-- install jsregexp (optional!:).
+				run = "make install_jsregexp",
+			}, -- Required
+
+			-- Adds a number of user-friendly snippets
+			{ "rafamadriz/friendly-snippets" },
 		},
 	})
 
