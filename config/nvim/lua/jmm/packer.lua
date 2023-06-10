@@ -16,7 +16,6 @@ return require("packer").startup(function(use)
 	use("tpope/vim-unimpaired")
 
 	use("tpope/vim-eunuch")
-	use("tpope/vim-eunuch")
 
 	use({
 		"numToStr/Comment.nvim",
@@ -172,9 +171,10 @@ return require("packer").startup(function(use)
 	-- Automatically set 'shiftwidth' + 'expandtab' (indention) based on file type.
 	use("tpope/vim-sleuth")
 
-	use("m4xshen/autoclose.nvim", {
+	use({
+		"windwp/nvim-autopairs",
 		config = function()
-			require("autoclose").setup()
+			require("nvim-autopairs").setup({})
 		end,
 	})
 
