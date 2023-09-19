@@ -38,6 +38,8 @@ vim.opt.diffopt:append("vertical")
 -- Update a buffer's contents on focus if it changed outside of Vim
 vim.cmd("au FocusGained,BufEnter * :checktime")
 
+vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format()]])
+
 -- Open vertical splits on the right
 vim.opt.splitright = true
 vim.opt.splitbelow = true
