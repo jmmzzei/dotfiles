@@ -1,62 +1,52 @@
--- Only required if you have packer configured as `opt`
-vim.cmd([[packadd packer.nvim]])
+return {
+	"machakann/vim-sandwich",
+	"airblade/vim-gitgutter",
+	"haya14busa/is.vim",
+	"tpope/vim-fugitive",
+	"tpope/vim-unimpaired",
+	"tpope/vim-eunuch",
+	"sheebuild/vim-polyglot",
+	"junegunn/goyo.vim",
+	"editorconfig/editorconfig-vim",
+	"vimwiki/vimwiki",
+	"Yggdroot/indentLine",
+	"jose-elias-alvarez/null-ls.nvim",
+	"jay-babu/mason-null-ls.nvim",
+	"mbbill/undotree",
+	{
+		"nvim-treesitter/nvim-treesitter",
+		version = false, -- last release is way too old and doesn't work on Windows
+		build = ":TSUpdate",
+		event = { "BufReadPost", "BufNewFile" },
+	},
+	-- Automatically set 'shiftwidth' + 'expandtab' (indention) based on file type.
+	"tpope/vim-sleuth",
+	"RRethy/vim-illuminate",
+	"nvim-tree/nvim-web-devicons",
 
-return require("packer").startup(function(use)
-	-- Packer can manage itself
-	use("wbthomason/packer.nvim")
-
-	use("machakann/vim-sandwich")
-
-	use("airblade/vim-gitgutter")
-
-	use("haya14busa/is.vim")
-
-	use("tpope/vim-fugitive")
-
-	use("tpope/vim-unimpaired")
-
-	use("tpope/vim-eunuch")
-
-	use({
+	{
 		"numToStr/Comment.nvim",
-		requires = "JoosepAlviste/nvim-ts-context-commentstring",
+		dependencies = "JoosepAlviste/nvim-ts-context-commentstring",
 		config = function()
 			require("Comment").setup({
 				pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
 			})
 		end,
-	})
-	-- use("tpope/vim-commentary")
+	},
 
-	use("sheerun/vim-polyglot")
-
-	use("junegunn/goyo.vim")
-
-	use("editorconfig/editorconfig-vim")
-
-	use("vimwiki/vimwiki")
-
-	use("Yggdroot/indentLine")
-
-	use({
+	{
 		"williamboman/mason.nvim",
-		run = ":MasonUpdate", -- :MasonUpdate updates registry contents
-	})
+		build = ":MasonUpdate", -- :MasonUpdate updates registry contents
+	},
 
-	use("nvim-tree/nvim-web-devicons")
-
-	use({
+	{
 		"nvim-lualine/lualine.nvim",
-		requires = { "nvim-tree/nvim-web-devicons", opt = true },
-	})
+		dependencies = { "nvim-tree/nvim-web-devicons", opt = true },
+	},
 
-	use("jose-elias-alvarez/null-ls.nvim")
-
-	use("jay-babu/mason-null-ls.nvim")
-
-	use({
+	{
 		"folke/trouble.nvim",
-		requires = "nvim-tree/nvim-web-devicons",
+		dependencies = "nvim-tree/nvim-web-devicons",
 		config = function()
 			require("trouble").setup({
 				action_keys = { -- key mappings for actions in the trouble list
@@ -70,17 +60,17 @@ return require("packer").startup(function(use)
 				-- refer to the configuration section below
 			})
 		end,
-	})
+	},
 
-	use({
+	{
 		"VonHeikemen/lsp-zero.nvim",
 		branch = "v2.x",
-		requires = {
+		dependencies = {
 			-- LSP Support
 			{ "neovim/nvim-lspconfig" }, -- Required
 			{ -- Optional
 				"williamboman/mason.nvim",
-				run = function()
+				build = function()
 					pcall(vim.cmd, "MasonUpdate")
 				end,
 			},
@@ -94,42 +84,38 @@ return require("packer").startup(function(use)
 				-- follow latest release.
 				tag = "v<CurrentMajor>.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
 				-- install jsregexp (optional!:).
-				run = "make install_jsregexp",
+				build = "make install_jsregexp",
 			}, -- Required
 
 			-- Adds a number of user-friendly snippets
 			{ "rafamadriz/friendly-snippets" },
 		},
-	})
+	},
 
-	use("mbbill/undotree")
-
-	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
-
-	use({
+	{
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.1",
 		-- or                            , branch = '0.1.x',
-		requires = { { "nvim-lua/plenary.nvim" } },
-	})
+		dependencies = { { "nvim-lua/plenary.nvim" } },
+	},
 
-	use({
+	{
 		"nvim-telescope/telescope-fzf-native.nvim",
-		run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
-	})
+		build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+	},
 
-	use({
+	{
 		"rose-pine/neovim",
 		as = "rose-pine",
 		config = function()
 			vim.cmd("colorscheme rose-pine")
 		end,
-	})
+	},
 
-	use({
+	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v2.x",
-		requires = {
+		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 			"MunifTanjim/nui.nvim",
@@ -166,17 +152,12 @@ return require("packer").startup(function(use)
 				},
 			})
 		end,
-	})
+	},
 
-	-- Automatically set 'shiftwidth' + 'expandtab' (indention) based on file type.
-	use("tpope/vim-sleuth")
-
-	use({
+	{
 		"windwp/nvim-autopairs",
 		config = function()
 			require("nvim-autopairs").setup({})
 		end,
-	})
-
-	use("RRethy/vim-illuminate")
-end)
+	},
+}
