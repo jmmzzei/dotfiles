@@ -1,0 +1,24 @@
+# Insert your preferred key mappings here.
+unmap k
+map k scrollDown
+unmap l
+map l scrollUp
+unmap j
+map j previousTab
+unmap ñ
+map ñ nextTab
+unmap K
+map K previousTab
+unmap L
+map L nextTab
+
+unmap u
+map u goBack
+map <c-r> goForward
+
+map <c-o> visitPreviousTab
+
+map <c-r> reload
+
+unmap o
+map o Vomnibar.activateInNewTab
