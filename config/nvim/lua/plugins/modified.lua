@@ -18,7 +18,7 @@ return {
 		opts = {
 			window = {
 				mappings = {
-					["l"] = "navigate_down",
+					["l"] = "noop",
 				},
 			},
 		},
