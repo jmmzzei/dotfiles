@@ -122,6 +122,7 @@ alias vi="nvim"
 alias vim="nvim"
 alias gr="git remote -v"
 alias cp="cp -r"
+alias cc="xclip -selection c"
 
 alias dlf="docker logs -f"
 alias dst="docker stop"
