@@ -13,7 +13,7 @@
   pullom = pull origin master
   pullupm = pull upstream master
   ui = update-index --again
-  logd = log --pretty=format:'%C(yellow)%h | %Cred%ad | %Cblue%an%Cgreen%d | %Creset%s' --date=relative
+  logd = log --pretty=format:'%C(yellow)%h | %Cred%ad | %Cblue%an%Cgreen%d | %Creset%s' --date=human
   logo = log --graph --decorate --oneline --abbrev-commit --all
   ls = ls-files
   st = status --short
