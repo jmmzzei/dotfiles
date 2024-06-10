@@ -60,6 +60,7 @@ vim.api.nvim_set_keymap("n", "<Leader>ww", ":vs 100 | VimwikiIndex<CR>", {})
 
 -- telescope keymaps
 local builtin = require("telescope.builtin")
+local ext = require("telescope").extensions
 vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
 vim.keymap.set("n", "<leader>e", builtin.live_grep, {})
 vim.keymap.set("v", "<leader>e", builtin.grep_string, {})
@@ -68,9 +69,10 @@ vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 vim.keymap.set("n", "<leader>gk", builtin.git_commits, {})
 vim.keymap.set("n", "<leader>gj", builtin.git_bcommits, {})
 vim.keymap.set("n", "<leader>gbr", builtin.git_branches, {})
+vim.keymap.set("n", "<leader>gt", ext.git_file_history.git_file_history, {})
 vim.keymap.set("n", "<C-p>", builtin.find_files, {})
 vim.keymap.set("n", "<leader>ps", function()
-  builtin.grep_string({ search = vim.fn.input("Rg > ") })
+	builtin.grep_string({ search = vim.fn.input("Rg > ") })
 end)
 
 -- vim-fugitive keymaps
