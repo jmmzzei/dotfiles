@@ -1,4 +1,8 @@
 return {
+	{
+		"folke/zen-mode.nvim",
+		opts = {},
+	},
 	{ "isak102/telescope-git-file-history.nvim" },
 	{ "vimwiki/vimwiki" },
 	{ "tpope/vim-fugitive" },
